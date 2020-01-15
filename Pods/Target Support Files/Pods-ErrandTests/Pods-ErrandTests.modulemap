@@ -1,0 +1,6 @@
+framework module Pods_ErrandTests {
+  umbrella header "Pods-ErrandTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

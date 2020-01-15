@@ -1,0 +1,6 @@
+framework module Pods_Errand {
+  umbrella header "Pods-Errand-umbrella.h"
+
+  export *
+  module * { export * }
+}
