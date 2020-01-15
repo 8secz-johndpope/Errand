@@ -17,15 +17,27 @@ class RegistViewController: UIViewController {
     
     setUpView()
     // Do any additional setup after loading the view.
+    accountText.text = "1@gmail.com"
+    
+    passwordText.text = "123456"
+    
+    confirmText.text = "123456"
+    
   }
   
-  @IBOutlet weak var CheatView: UIView!
+  let dbF = Firestore.firestore()
+  
+  var gender = 1
+  
+  @IBOutlet weak var cheatView: UIView!
   
   @IBOutlet weak var accountLabel: UILabel!
   
   @IBOutlet weak var passwordLabel: UILabel!
   
   @IBOutlet weak var confirmLabel: UILabel!
+  
+  @IBOutlet weak var nickNameLabel: UILabel!
   
   @IBOutlet weak var registerBtn: UIButton!
   
@@ -35,13 +47,30 @@ class RegistViewController: UIViewController {
   
   @IBOutlet weak var confirmText: UITextField!
   
+  @IBOutlet weak var nickNameText: UITextField!
+  
+  @IBAction func genderSegmentAct(_ sender: UISegmentedControl) {
+    
+    switch sender.selectedSegmentIndex {
+    case 0:
+      
+      self.gender = 1
+      
+    default:
+      
+      self.gender = 0
+      
+    }
+    
+  }
+  
   @IBAction func registAct(_ sender: Any) {
-
+    
     guard let account = accountText.text,
       
       accountText.text != "" else {
         
-        LKProgressHUD.showFailure(text: RegistMessage.EmptyAccount.rawValue, view: self)
+        LKProgressHUD.showFailure(text: RegistMessage.emptyAccount.rawValue, view: self)
         
         return }
     
@@ -49,7 +78,7 @@ class RegistViewController: UIViewController {
       
       passwordText.text != "" else {
         
-        LKProgressHUD.showFailure(text: RegistMessage.EmptyPassword.rawValue, view: self)
+        LKProgressHUD.showFailure(text: RegistMessage.emptyPassword.rawValue, view: self)
         
         return }
     
@@ -57,17 +86,27 @@ class RegistViewController: UIViewController {
       
       confirmText.text != "" else {
         
-        LKProgressHUD.showFailure(text: RegistMessage.EmptyConfirm.rawValue, view: self)
+        LKProgressHUD.showFailure(text: RegistMessage.emptyConfirm.rawValue, view: self)
         
         return }
     
-    if password == confirm {
+    guard let nickName = nickNameText.text,
+    
+    nickNameText.text != "" else {
       
-      LKProgressHUD.showFailure(text: RegistMessage.ConfirmWrong.rawValue, view: self)
+      LKProgressHUD.showFailure(text: RegistMessage.emptyNickname.rawValue, view: self)
+      
+      return }
+    
+    if password != confirm {
+      
+      LKProgressHUD.showFailure(text: RegistMessage.confirmWrong.rawValue, view: self)
       
     } else {
       
-      registAccount(account: account, password: password)
+      LKProgressHUD.show(view: self)
+      
+      UserManager.shared.registAccount(account: account, password: password, gender: self.gender, nickName: nickName, controller: self)
       
     }
   }
@@ -82,11 +121,7 @@ class RegistViewController: UIViewController {
     
     registerBtn.layer.cornerRadius = 20
     
-    CheatView.layer.cornerRadius = 20
-    
-  }
-  
-  func registAccount(account: String, password: String) {
+    cheatView.layer.cornerRadius = 20
     
   }
   

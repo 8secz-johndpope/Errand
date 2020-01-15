@@ -8,16 +8,63 @@
 
 import Foundation
 
-enum RegistMessage: String{
+enum FbMessage: String {
   
-  case EmptyAccount = "EmptyAccount"
+  case emptyToken = "Empty Token"
   
-  case EmptyPassword = "EmptyPassword"
+  case fbloginError = "FB Login Err"
+}
+
+enum RegistMessage: String {
   
-  case EmptyConfirm = "EmptyConfirm"
+  case emptyAccount = "EmptyAccount"
   
-  case IllegalAccount = "IllegalAccount"
+  case emptyPassword = "EmptyPassword"
   
-  case ConfirmWrong = "ConfirmWrong"
+  case emptyConfirm = "EmptyConfirm"
   
+  case emptyNickname = "Empty Nickname"
+  
+  case illegalAccount = "IllegalAccount"
+  
+  case confirmWrong = "ConfirmWrong"
+  
+  case registFailed = "Regist Fail"
+  
+  case registSuccess = "Regist Success"
+  
+}
+
+struct AccountInfo {
+  
+  let email: String
+  
+  let password: String
+  
+  let gender: Int
+  
+  let nickName: String
+  
+  let friends: [String]
+  
+  var toDict: [String: Any] {
+    
+    return [  "email": email,
+              
+            "password": password,
+            
+            "nickname": nickName,
+            
+            "gender": gender,
+            
+            "friends": friends
+          ]
+  }
+}
+
+struct FbData {
+  
+  var name: String
+  
+  var image: URL
 }

@@ -12,6 +12,11 @@ target 'Errand' do
   pod "IQKeyboardManager"
   pod "JGProgressHUD"
   pod 'SwiftLint'
+  pod 'Firebase/Database'
+  pod 'Firebase/Firestore'
+  pod 'Firebase/Core'
+  pod 'Firebase/Auth'
+  pod 'FBSDKLoginKit'
 
   target 'ErrandTests' do
     inherit! :search_paths

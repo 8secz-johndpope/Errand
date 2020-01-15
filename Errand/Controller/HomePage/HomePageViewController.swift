@@ -7,38 +7,41 @@
 //
 
 import UIKit
-
+import FBSDKLoginKit
 
 class ViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+
     setUpBtn()
+
+    print("View")
     
   }
 
   @IBOutlet weak var fbLoginBtn: UIButton!
-  
+
   @IBOutlet weak var visitorRegisterBtn: UIButton!
-  
+
   @IBAction func fbLoginAct(_ sender: Any) {
     
-  }
-  
-  @IBAction func visitorRegisterAct(_ sender: Any) {
-    
-    performSegue(withIdentifier: "register", sender: nil)
-    
-  }
-  
-  func setUpBtn() {
-    
-    fbLoginBtn.layer.cornerRadius = 20
-    
-    visitorRegisterBtn.layer.cornerRadius = 20
-    
-  }
-  
-}
+    UserManager.shared.fbLogin(controller: self)
+      
+    }
 
+  @IBAction func visitorRegisterAct(_ sender: Any) {
+
+    performSegue(withIdentifier: "register", sender: nil)
+
+  }
+
+  func setUpBtn() {
+
+    fbLoginBtn.layer.cornerRadius = 20
+
+    visitorRegisterBtn.layer.cornerRadius = 20
+
+  }
+
+}

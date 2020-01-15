@@ -16,8 +16,8 @@ class LKProgressHUD {
     private init() { }
 
     let hud = JGProgressHUD(style: .dark)
-   
-  static func showSuccess(text: String,view: UIViewController) {
+
+  static func showSuccess(text: String, view: UIViewController) {
 
         if !Thread.isMainThread {
 
