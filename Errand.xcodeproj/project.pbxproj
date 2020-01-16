@@ -11,7 +11,6 @@
 		40EA5FF204EA3BECE8D92AF4 /* Pods_Errand_ErrandUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A85AAEF02EB4115272C07D69 /* Pods_Errand_ErrandUITests.framework */; };
 		CBC2C481F6F57033AC62AEB1 /* Pods_ErrandTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 608A5BF50BFFACEF7C1D807F /* Pods_ErrandTests.framework */; };
 		FB387C1023CEEF0E00B6D8C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB387C0F23CEEF0E00B6D8C4 /* AppDelegate.swift */; };
-		FB387C1223CEEF0E00B6D8C4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB387C1123CEEF0E00B6D8C4 /* SceneDelegate.swift */; };
 		FB387C1423CEEF0E00B6D8C4 /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB387C1323CEEF0E00B6D8C4 /* HomePageViewController.swift */; };
 		FB387C1723CEEF0E00B6D8C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB387C1523CEEF0E00B6D8C4 /* Main.storyboard */; };
 		FB387C1A23CEEF0E00B6D8C4 /* Errand.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FB387C1823CEEF0E00B6D8C4 /* Errand.xcdatamodeld */; };
@@ -27,6 +26,8 @@
 		FB387C5623CF521D00B6D8C4 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB387C5523CF521D00B6D8C4 /* UserManager.swift */; };
 		FB387C5823CF551A00B6D8C4 /* Content.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB387C5723CF551A00B6D8C4 /* Content.storyboard */; };
 		FB387C5B23CF554300B6D8C4 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB387C5A23CF554300B6D8C4 /* MapViewController.swift */; };
+		FB9A2BFE23D068FF00553D97 /* PostTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9A2BFD23D068FF00553D97 /* PostTaskViewController.swift */; };
+		FB9A2C0023D0729400553D97 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB9A2BFF23D0729400553D97 /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,7 +59,6 @@
 		F997A91DF0A4410BFFBEDA80 /* Pods-Errand-ErrandUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Errand-ErrandUITests.debug.xcconfig"; path = "Target Support Files/Pods-Errand-ErrandUITests/Pods-Errand-ErrandUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		FB387C0C23CEEF0E00B6D8C4 /* Errand.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Errand.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB387C0F23CEEF0E00B6D8C4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		FB387C1123CEEF0E00B6D8C4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		FB387C1323CEEF0E00B6D8C4 /* HomePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageViewController.swift; sourceTree = "<group>"; };
 		FB387C1623CEEF0E00B6D8C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FB387C1923CEEF0E00B6D8C4 /* Errand.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Errand.xcdatamodel; sourceTree = "<group>"; };
@@ -79,6 +79,8 @@
 		FB387C5523CF521D00B6D8C4 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		FB387C5723CF551A00B6D8C4 /* Content.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Content.storyboard; sourceTree = "<group>"; };
 		FB387C5A23CF554300B6D8C4 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		FB9A2BFD23D068FF00553D97 /* PostTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTaskViewController.swift; sourceTree = "<group>"; };
+		FB9A2BFF23D0729400553D97 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB9A2C0023D0729400553D97 /* MapKit.framework in Frameworks */,
 				35D6F10C7FD31F054E953DEB /* Pods_Errand.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -125,6 +128,7 @@
 		D6CA3CD977931CCA5629628A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FB9A2BFF23D0729400553D97 /* MapKit.framework */,
 				BE91492BEFF455014401A8A6 /* Pods_Errand.framework */,
 				A85AAEF02EB4115272C07D69 /* Pods_Errand_ErrandUITests.framework */,
 				608A5BF50BFFACEF7C1D807F /* Pods_ErrandTests.framework */,
@@ -161,7 +165,6 @@
 				FB387C4A23CF05FD00B6D8C4 /* Model */,
 				FB387C4523CEF5BB00B6D8C4 /* View */,
 				FB387C4423CEF5A900B6D8C4 /* Controller */,
-				FB387C1123CEEF0E00B6D8C4 /* SceneDelegate.swift */,
 				FB387C0F23CEEF0E00B6D8C4 /* AppDelegate.swift */,
 				FB387C1B23CEEF0F00B6D8C4 /* Assets.xcassets */,
 				FB387C1D23CEEF0F00B6D8C4 /* LaunchScreen.storyboard */,
@@ -193,6 +196,7 @@
 		FB387C4423CEF5A900B6D8C4 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				FB9A2BFC23D068E200553D97 /* PostTask */,
 				FB387C5923CF552A00B6D8C4 /* Map */,
 				FB387C4723CEFCA900B6D8C4 /* Register */,
 				FB387C4623CEF5C600B6D8C4 /* HomePage */,
@@ -265,6 +269,14 @@
 				FB387C5A23CF554300B6D8C4 /* MapViewController.swift */,
 			);
 			path = Map;
+			sourceTree = "<group>";
+		};
+		FB9A2BFC23D068E200553D97 /* PostTask */ = {
+			isa = PBXGroup;
+			children = (
+				FB9A2BFD23D068FF00553D97 /* PostTaskViewController.swift */,
+			);
+			path = PostTask;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -533,7 +545,7 @@
 				FB387C1423CEEF0E00B6D8C4 /* HomePageViewController.swift in Sources */,
 				FB387C1023CEEF0E00B6D8C4 /* AppDelegate.swift in Sources */,
 				FB387C5023CF0E8E00B6D8C4 /* RegisterItem.swift in Sources */,
-				FB387C1223CEEF0E00B6D8C4 /* SceneDelegate.swift in Sources */,
+				FB9A2BFE23D068FF00553D97 /* PostTaskViewController.swift in Sources */,
 				FB387C1A23CEEF0E00B6D8C4 /* Errand.xcdatamodeld in Sources */,
 				FB387C4D23CF098F00B6D8C4 /* JGProgressHUDWrapper.swift in Sources */,
 			);

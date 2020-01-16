@@ -8,11 +8,17 @@
 
 import Foundation
 
-enum FbMessage: String {
+enum FireBaseMessage: Error {
   
-  case emptyToken = "Empty Token"
+  case fireBaseLoginError
   
-  case fbloginError = "FB Login Err"
+}
+
+enum FbMessage: Error {
+  
+  case emptyToken
+  
+  case fbloginError
 }
 
 enum RegistMessage: String {
@@ -25,13 +31,17 @@ enum RegistMessage: String {
   
   case emptyNickname = "Empty Nickname"
   
-  case illegalAccount = "IllegalAccount"
+  case confirmWrong = "Confirm Wrong"
   
-  case confirmWrong = "ConfirmWrong"
+}
+
+enum RegiError: Error {
   
-  case registFailed = "Regist Fail"
+  case illegalAccount
   
-  case registSuccess = "Regist Success"
+  case registFailed
+  
+  case registSuccess
   
 }
 
@@ -39,11 +49,11 @@ struct AccountInfo {
   
   let email: String
   
-  let password: String
+  let nickname: String
   
   let gender: Int
   
-  let nickName: String
+  let task: [String]
   
   let friends: [String]
   
@@ -51,14 +61,14 @@ struct AccountInfo {
     
     return [  "email": email,
               
-            "password": password,
-            
-            "nickname": nickName,
-            
-            "gender": gender,
-            
-            "friends": friends
-          ]
+              "nickname": nickname,
+              
+              "gender": gender,
+              
+              "task": task,
+              
+              "friends": friends
+    ]
   }
 }
 

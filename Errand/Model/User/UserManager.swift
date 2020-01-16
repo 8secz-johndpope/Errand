@@ -21,53 +21,54 @@ class UserManager {
   
   private init() { }
   
-  func registAccount(account: String, password: String, gender: Int, nickName: String, controller: UIViewController) {
+  func registAccount(nickName: String, account: String, password: String, gender: Int, completion: @escaping (Result<String, Error>) -> Void) {
     
     Auth.auth().createUser(withEmail: account, password: password) { (_, error) in
       
       if error != nil {
         
-        LKProgressHUD.showFailure(text: RegistMessage.registFailed.rawValue, view: controller)
+        completion(Result.failure(RegiError.registFailed))
+      }
+      
+      completion(.success("ok"))
+    }
+  }
+    
+  func createDataBase(classification: String, gender: Int, nickName: String, email: String, completion: @escaping (Result<String, Error>) -> Void) {
+    
+    let friends: [String] = []
+    
+    let task: [String] = []
+    
+    let userId = Auth.auth().currentUser?.uid
+    
+    let info = AccountInfo(email: email, nickname: nickName, gender: gender, task: task, friends: friends)
+    
+    self.dbF.collection(classification).document(email).setData(info.toDict) { error in
+      
+      if error != nil {
+        
+        completion(Result.failure(RegiError.registFailed))
         
       } else {
         
-        let friends: [String] = []
+        UserDefaults.standard.set(gender, forKey: "gender")
         
-        let userId = Auth.auth().currentUser?.uid
+        UserDefaults.standard.set(nickName, forKey: "nickname")
         
-        let info = AccountInfo(email: account, password: password, gender: gender, nickName: nickName, friends: friends)
+        UserDefaults.standard.set(email, forKey: "email")
         
-        self.dbF.collection("Users").document(account).setData(info.toDict) { error in
-          
-          if error != nil {
-            
-            LKProgressHUD.showFailure(text: RegistMessage.registFailed.rawValue, view: controller)
-            
-          } else {
-            
-            LKProgressHUD.showSuccess(text: RegistMessage.registSuccess.rawValue, view: controller)
-            
-            UserDefaults.standard.set(account, forKey: "account")
-            
-            UserDefaults.standard.set(password, forKey: "password")
-            
-            UserDefaults.standard.set(true, forKey: "login")
-            
-            UserDefaults.standard.set(userId, forKey: "userid")
-            
-            guard let userInfoVc = controller.storyboard?.instantiateViewController(identifier: "userinfo") as? UserInfoViewController else { return }
-            
-            controller.modalPresentationStyle = .overCurrentContext
-            
-            controller.present(userInfoVc, animated: true, completion: nil)
-            
-          }
-        }
+        UserDefaults.standard.set(true, forKey: "login")
+        
+        UserDefaults.standard.set(userId, forKey: "userid")
+        
+        completion(Result.success("Success"))
+        
       }
     }
   }
   
-  func fbLogin(controller: UIViewController) {
+  func fbLogin(controller: UIViewController, completion: @escaping (Result<String, Error>) -> Void) {
     
     let manager = LoginManager()
     
@@ -75,36 +76,30 @@ class UserManager {
       
       guard let response = result else {
         
-        LKProgressHUD.showFailure(text: FbMessage.fbloginError.rawValue, view: controller)
+        completion(Result.failure(FbMessage.fbloginError))
         
         return }
       
       guard let accessToken = response.token?.tokenString else {
         
-        LKProgressHUD.showFailure(text: FbMessage.emptyToken.rawValue, view: controller)
+        completion(Result.failure(FbMessage.emptyToken))
         
         return
         
       }
       
-      self.loadFBProfile(controller: controller)
+      completion(Result.success(accessToken))
       
-      
-      
-      guard let mapPage = UIStoryboard(name: "Content", bundle: nil).instantiateViewController(identifier: "map") as? MapViewController else { return }
-      
-      controller.present(mapPage, animated: true, completion: nil)
-    
     }
   }
   
-  func loadFBProfile(controller: UIViewController) {
+  func loadFBProfile(controller: UIViewController, completion: @escaping (Result<FbData, Error>) -> Void) {
     
     Profile.loadCurrentProfile { (profile, error) in
       
       if error != nil {
         
-        LKProgressHUD.showFailure(text: FbMessage.fbloginError.rawValue, view: controller)
+        completion(Result.failure(FireBaseMessage.fireBaseLoginError))
         
         return
         
@@ -114,22 +109,43 @@ class UserManager {
           let profileName = profile.name,
           let profilePicture = profile.imageURL(forMode: .normal, size: CGSize(width: 300, height: 300)) else {
             
-            LKProgressHUD.showFailure(text: FbMessage.fbloginError.rawValue, view: controller)
+            completion(Result.failure(FireBaseMessage.fireBaseLoginError))
             
             return }
         
         self.FBData = FbData(name: profileName, image: profilePicture)
         
+        guard let fbDataBack = self.FBData else {
+          
+          completion(Result.failure(FireBaseMessage.fireBaseLoginError))
+          
+          return }
+        
+        completion(Result.success(fbDataBack))
+        
       }
     }
   }
   
-  func loginFireBaseWithFB(accesstoken: String) {
+  func loginFireBaseWithFB(accesstoken: String, controller: UIViewController, completion: @escaping (Result<String, Error>) -> Void) {
     
     let credit = FacebookAuthProvider.credential(withAccessToken: accesstoken)
     
     Auth.auth().signIn(with: credit) { (user, error) in
-      <#code#>
+      
+      if error != nil {
+        
+        completion(Result.failure(FireBaseMessage.fireBaseLoginError))
+        
+      } else {
+        
+        guard let user = user else { return }
+        
+        print(user)
+        
+        completion(Result.success("Success"))
+        
+      }
     }
   }
   

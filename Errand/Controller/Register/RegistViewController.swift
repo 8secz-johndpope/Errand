@@ -41,13 +41,13 @@ class RegistViewController: UIViewController {
   
   @IBOutlet weak var registerBtn: UIButton!
   
+  @IBOutlet weak var nickNameText: UITextField!
+  
   @IBOutlet weak var accountText: UITextField!
   
   @IBOutlet weak var passwordText: UITextField!
   
   @IBOutlet weak var confirmText: UITextField!
-  
-  @IBOutlet weak var nickNameText: UITextField!
   
   @IBAction func genderSegmentAct(_ sender: UISegmentedControl) {
     
@@ -55,6 +55,10 @@ class RegistViewController: UIViewController {
     case 0:
       
       self.gender = 1
+      
+    case 1:
+      
+      self.gender = 0
       
     default:
       
@@ -70,7 +74,7 @@ class RegistViewController: UIViewController {
       
       accountText.text != "" else {
         
-        LKProgressHUD.showFailure(text: RegistMessage.emptyAccount.rawValue, view: self)
+        LKProgressHUD.showFailure(text: RegistMessage.emptyAccount.rawValue, controller: self)
         
         return }
     
@@ -78,7 +82,7 @@ class RegistViewController: UIViewController {
       
       passwordText.text != "" else {
         
-        LKProgressHUD.showFailure(text: RegistMessage.emptyPassword.rawValue, view: self)
+        LKProgressHUD.showFailure(text: RegistMessage.emptyPassword.rawValue, controller: self)
         
         return }
     
@@ -86,27 +90,55 @@ class RegistViewController: UIViewController {
       
       confirmText.text != "" else {
         
-        LKProgressHUD.showFailure(text: RegistMessage.emptyConfirm.rawValue, view: self)
+        LKProgressHUD.showFailure(text: RegistMessage.emptyConfirm.rawValue, controller: self)
         
         return }
     
     guard let nickName = nickNameText.text,
-    
-    nickNameText.text != "" else {
       
-      LKProgressHUD.showFailure(text: RegistMessage.emptyNickname.rawValue, view: self)
-      
-      return }
+      nickNameText.text != "" else {
+        
+        LKProgressHUD.showFailure(text: RegistMessage.emptyNickname.rawValue, controller: self)
+        
+        return }
     
     if password != confirm {
       
-      LKProgressHUD.showFailure(text: RegistMessage.confirmWrong.rawValue, view: self)
+      LKProgressHUD.showFailure(text: RegistMessage.confirmWrong.rawValue, controller: self)
       
     } else {
       
-      LKProgressHUD.show(view: self)
+      LKProgressHUD.show(controller: self)
       
-      UserManager.shared.registAccount(account: account, password: password, gender: self.gender, nickName: nickName, controller: self)
+      UserManager.shared.registAccount(nickName: nickName, account: account, password: password, gender: self.gender) { result in
+        
+        switch result {
+          
+        case .success:
+          
+          UserManager.shared.createDataBase(classification: "Users", gender: self.gender, nickName: nickName, email: account) { result in
+            
+            switch result {
+              
+            case .success:
+              
+              guard let userInfoVc = UIStoryboard(name: "Content", bundle: nil).instantiateViewController(identifier: "map") as? MapViewController else { return }
+              
+              LKProgressHUD.dismiss()
+              
+              self.present(userInfoVc, animated: true, completion: nil)
+              
+            case .failure(let error):
+              
+               LKProgressHUD.showFailure(text: error.localizedDescription, controller: self)
+            }
+          }
+          
+        case .failure(let error):
+          
+          LKProgressHUD.showFailure(text: error.localizedDescription, controller: self)
+        }
+      }
       
     }
   }
