@@ -122,7 +122,7 @@ class RegistViewController: UIViewController {
               
             case .success:
               
-              guard let userInfoVc = UIStoryboard(name: "Content", bundle: nil).instantiateViewController(identifier: "map") as? MapViewController else { return }
+              guard let userInfoVc = UIStoryboard(name: "Content", bundle: nil).instantiateViewController(identifier: "googleMap") as? GoogleMapViewController else { return }
               
               LKProgressHUD.dismiss()
               

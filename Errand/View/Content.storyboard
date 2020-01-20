@@ -17,10 +17,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TeR-Ik-nMZ">
-                                <rect key="frame" x="0.0" y="44" width="414" height="1003"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="1052"/>
                             </mapView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="SXA-Ex-xEM">
-                                <rect key="frame" x="0.0" y="1055" width="414" height="62"/>
+                                <rect key="frame" x="0.0" y="1104" width="414" height="62"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="InA-Ze-sUb">
                                     <size key="itemSize" width="185" height="50"/>
@@ -66,6 +66,62 @@
             </objects>
             <point key="canvasLocation" x="1920.289855072464" y="101.78571428571428"/>
         </scene>
+        <!--地圖-->
+        <scene sceneID="SeB-zz-dn4">
+            <objects>
+                <viewController storyboardIdentifier="googleMap" id="Lwa-2F-1Km" customClass="GoogleMapViewController" customModule="Errand" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="M2v-kO-urR">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c6Y-Tz-S30" customClass="GMSMapView">
+                                <rect key="frame" x="0.0" y="44" width="414" height="699"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="AF1-sS-Eva">
+                                <rect key="frame" x="0.0" y="751" width="414" height="62"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="X0O-Rr-LEv">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="h3r-6y-T5t">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="yvb-oS-rhs">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="lR9-e6-IDw" firstAttribute="bottom" secondItem="AF1-sS-Eva" secondAttribute="bottom" id="Bet-Bk-rK7"/>
+                            <constraint firstItem="AF1-sS-Eva" firstAttribute="top" secondItem="c6Y-Tz-S30" secondAttribute="bottom" constant="8" symbolic="YES" id="Cvf-J8-6XR"/>
+                            <constraint firstItem="AF1-sS-Eva" firstAttribute="leading" secondItem="lR9-e6-IDw" secondAttribute="leading" id="Fib-u5-ALw"/>
+                            <constraint firstItem="lR9-e6-IDw" firstAttribute="trailing" secondItem="c6Y-Tz-S30" secondAttribute="trailing" id="La5-HJ-MR2"/>
+                            <constraint firstItem="lR9-e6-IDw" firstAttribute="trailing" secondItem="AF1-sS-Eva" secondAttribute="trailing" id="PbD-54-gvH"/>
+                            <constraint firstItem="c6Y-Tz-S30" firstAttribute="leading" secondItem="lR9-e6-IDw" secondAttribute="leading" id="Qcu-mw-y3e"/>
+                            <constraint firstItem="c6Y-Tz-S30" firstAttribute="top" secondItem="lR9-e6-IDw" secondAttribute="top" id="obl-v2-6lY"/>
+                            <constraint firstItem="lR9-e6-IDw" firstAttribute="bottom" secondItem="c6Y-Tz-S30" secondAttribute="bottom" constant="70" id="xYl-Ef-MLB"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="lR9-e6-IDw"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="地圖" image="map" catalog="system" id="KBp-7e-gQC"/>
+                    <connections>
+                        <outlet property="categoryCollection" destination="AF1-sS-Eva" id="yab-X9-fTZ"/>
+                        <outlet property="googleMapView" destination="c6Y-Tz-S30" id="hac-HU-E0g"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pZ9-w1-uuK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="11.594202898550726" y="870.53571428571422"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="KTU-3Q-Mbb">
             <objects>
@@ -79,7 +135,7 @@
                         <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="3hd-SR-2Wa" kind="relationship" relationship="viewControllers" id="62s-Lj-2NZ"/>
+                        <segue destination="Lwa-2F-1Km" kind="relationship" relationship="viewControllers" id="3BU-8M-i1u"/>
                         <segue destination="WLw-Gq-EIX" kind="relationship" relationship="viewControllers" id="X4x-qv-cSI"/>
                     </connections>
                 </tabBarController>
@@ -101,10 +157,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cV8-xq-grr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1010" y="881"/>
+            <point key="canvasLocation" x="980" y="871"/>
         </scene>
     </scenes>
     <resources>
+        <image name="map" catalog="system" width="64" height="56"/>
         <image name="mappin.and.ellipse" catalog="system" width="58" height="64"/>
         <image name="pencil.and.ellipsis.rectangle" catalog="system" width="64" height="40"/>
     </resources>

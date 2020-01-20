@@ -52,7 +52,7 @@ class UserInfoViewController: UIViewController {
         
         LKProgressHUD.showSuccess(text: success, controller: self)
         
-        guard let userInfoVc = UIStoryboard(name: "Content", bundle: nil).instantiateViewController(identifier: "map") as? MapViewController else { return }
+        guard let userInfoVc  = UIStoryboard(name: "Content", bundle: nil).instantiateViewController(identifier: "tab") as? UITabBarController else { return }
         
         self.present(userInfoVc, animated: true, completion: nil)
         

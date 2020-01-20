@@ -18,6 +18,8 @@ target 'Errand' do
   pod 'Firebase/Auth'
   pod 'FBSDKLoginKit'
   pod 'GoogleSignIn'
+  pod ‘GoogleMaps’
+  pod ‘GooglePlaces’
 
   target 'ErrandTests' do
     inherit! :search_paths

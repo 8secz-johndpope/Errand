@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import Firebase
+import GoogleMaps
 import GoogleSignIn
 import FBSDKLoginKit
 import FirebaseFirestore
@@ -28,11 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                  print(error)
                  return
              }
-            print(Auth.auth().currentUser?.email)
-            print(Auth.auth().currentUser?.displayName)
-            print(Auth.auth().currentUser?.photoURL)
             NotificationCenter.default.post(name: Notification.Name("userInfo"), object: nil)
-//            print(user?.displayName,user?.email)
          }
      }
   
@@ -42,13 +39,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     
     if url.scheme! == "fb473880586821358" {
       
-        ApplicationDelegate.shared.application(app, open: url, options: options)
+      ApplicationDelegate.shared.application(app, open: url, options: options)
       
       return true
     } else {
       
       return GIDSignIn.sharedInstance().handle(url)
-//      return GIDSignIn.sharedInstance().handle(url,sourceApplication:options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,annotation: [:])
     }
   }
   
@@ -56,6 +52,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     // Override point for customization after application launch.
     
     FirebaseApp.configure()
+    
+    GMSServices.provideAPIKey("AIzaSyB_voEc15Sn0T_O9C2O-6dWz7c_ju42jXs")
     
     GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
     
