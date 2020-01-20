@@ -9,19 +9,47 @@
 import UIKit
 import CoreData
 import Firebase
+import GoogleSignIn
 import FBSDKLoginKit
 import FirebaseFirestore
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
+  
+   func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+         if let error = error {
+             print(error)
+             return
+         }
+         guard let authentication = user.authentication else {return}
+         let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
+         Auth.auth().signIn(with: credential) { (user, error) in
+             if let error = error {
+                 print(error)
+                 return
+             }
+            print(Auth.auth().currentUser?.email)
+            print(Auth.auth().currentUser?.displayName)
+            print(Auth.auth().currentUser?.photoURL)
+            NotificationCenter.default.post(name: Notification.Name("userInfo"), object: nil)
+//            print(user?.displayName,user?.email)
+         }
+     }
   
   var window: UIWindow?
-  
+
   func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
     
-    ApplicationDelegate.shared.application(app, open: url, options: options)
-    
-    return true
+    if url.scheme! == "fb473880586821358" {
+      
+        ApplicationDelegate.shared.application(app, open: url, options: options)
+      
+      return true
+    } else {
+      
+      return GIDSignIn.sharedInstance().handle(url)
+//      return GIDSignIn.sharedInstance().handle(url,sourceApplication:options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,annotation: [:])
+    }
   }
   
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -29,11 +57,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     FirebaseApp.configure()
     
+    GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
+    
+    GIDSignIn.sharedInstance().delegate = self
+    
     var firstVC: UIViewController?
     
     window = UIWindow(frame: UIScreen.main.bounds)
     
-    guard let isLogin = UserDefaults.standard.value(forKey: "login") as? Bool else {
+    guard let _ = UserDefaults.standard.value(forKey: "login") as? Bool else {
       
       firstVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "main") as? ViewController
       
@@ -42,8 +74,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       window?.makeKeyAndVisible()
 
       return true }
-
-    firstVC = UIStoryboard(name: "Content", bundle: nil).instantiateViewController(identifier: "map") as? MapViewController
+    
+    firstVC = UIStoryboard(name: "Content", bundle: nil).instantiateViewController(identifier: "tab") as? UITabBarController
     
     window?.rootViewController = firstVC
     

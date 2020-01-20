@@ -5,7 +5,7 @@
 //  Created by Jim on 2020/1/15.
 //  Copyright © 2020 Jim. All rights reserved.
 //
-
+import UIKit
 import Foundation
 import FBSDKLoginKit
 import Firebase
@@ -93,9 +93,9 @@ class UserManager {
     }
   }
   
-  func loadFBProfile(controller: UIViewController, completion: @escaping (Result<FbData, Error>) -> Void) {
+  func loadFBProfile(controller: UIViewController, completion: @escaping (Result<String, Error>) -> Void) {
     
-    Profile.loadCurrentProfile { (profile, error) in
+    Profile.loadCurrentProfile { [weak self](profile, error) in
       
       if error != nil {
         
@@ -113,15 +113,9 @@ class UserManager {
             
             return }
         
-        self.FBData = FbData(name: profileName, image: profilePicture)
+        self?.FBData = FbData(name: profileName, image: profilePicture)
         
-        guard let fbDataBack = self.FBData else {
-          
-          completion(Result.failure(FireBaseMessage.fireBaseLoginError))
-          
-          return }
-        
-        completion(Result.success(fbDataBack))
+        completion(Result.success("Success"))
         
       }
     }
@@ -148,5 +142,4 @@ class UserManager {
       }
     }
   }
-  
 }

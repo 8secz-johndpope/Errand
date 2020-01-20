@@ -25,27 +25,24 @@ class CustomPin: NSObject, MKAnnotation {
     self.subtitle = pinSubTitle
     
     self.coordinate = location
+
   }
+  
 }
 
 class MapViewController: UIViewController, MKMapViewDelegate {
-  
-  let location =  CLLocationCoordinate2D(latitude: 25.033671, longitude: 121.564427)
-  
-  let pin = CustomPin(pinTitle: "apple", pinSubTitle: "101", location: location)
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
     setUpLocationManager()
     
-    self.realTimeMap.addAnnotation(pin)
-    
+    addAnnotationOnMap()
+
   }
+  @IBOutlet weak var chooseKind: UICollectionView!
   
   @IBOutlet weak var realTimeMap: MKMapView!
-  
-  var selectAnnotation: MKPointAnnotation?
   
   let myLocationManager = CLLocationManager()
   
@@ -57,8 +54,23 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     super.viewDidAppear(animated)
     
-    checkLocationAuth()
+    checkLocationService()
     
+  }
+  
+  func addAnnotationOnMap() {
+    
+//    let annotation = MKPointAnnotation()
+//    annotation.title = "London"
+//    annotation.coordinate = CLLocationCoordinate2D(latitude: CLLocationDegrees(25.033671), longitude: CLLocationDegrees(121.564427))
+    
+//    realTimeMap.addAnnotation(annotation)
+    
+    let cor = CLLocationCoordinate2D(latitude: CLLocationDegrees(25.033671), longitude: CLLocationDegrees(121.564427))
+    
+    let test = CustomPin(pinTitle: "Jim", pinSubTitle: "is", location: cor)
+    
+    realTimeMap.addAnnotation(test)
   }
   
   func checkLocationService() {
@@ -78,18 +90,21 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     // 地圖預設顯示的範圍大小 (數字越小越精確)
     let currentLocationSpan: MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: latDelta, longitudeDelta: longDelta)
     
-    // 設置地圖顯示的範圍與中心點座標
-    let center: CLLocation = CLLocation(latitude: 25.05, longitude: 121.515)
+    guard let center = myLocationManager.location?.coordinate else { return }
     
     let currentRegion: MKCoordinateRegion = MKCoordinateRegion(
-      center: center.coordinate,
+      center: center,
       span: currentLocationSpan)
+    
     realTimeMap.setRegion(currentRegion, animated: true)
+    
   }
   
   func setUpLocationManager() {
     
     myLocationManager.delegate = self
+    
+    realTimeMap.delegate = self
     
     myLocationManager.distanceFilter = kCLLocationAccuracyNearestTenMeters
     
@@ -114,7 +129,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     case .denied:
       
       alertOpen()
-
+      
     case .notDetermined:
       
       myLocationManager.requestWhenInUseAuthorization()
@@ -152,7 +167,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 extension MapViewController: CLLocationManagerDelegate {
   
   func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-
+    
     guard let currentLocation = locations.last else { return }
     //總縮放範圍
     let range: MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: latDelta, longitudeDelta: longDelta)
@@ -166,33 +181,55 @@ extension MapViewController: CLLocationManagerDelegate {
     realTimeMap.setRegion(appearRegion, animated: true)
   }
   
-  func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-    
-    checkLocationAuth()
-    
-  }
-  
-  func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
-    
-      self.selectAnnotation = view.annotation as? MKPointAnnotation
-
-  }
-
-//  func info(sender: UIButton) {
-//      print(selectAnnotation?.coordinate)
-//  }
-  
-  func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-    
-    self.selectAnnotation = view.annotation as? MKPointAnnotation
-    
-  }
+  //  func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+  //
+  //    checkLocationAuth()
+  //
+  //  }
+  //
+  //  func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
+  //
+  //      self.selectAnnotation = view.annotation as? MKPointAnnotation
+  //
+  //  }
+  //
+  ////  func info(sender: UIButton) {
+  ////      print(selectAnnotation?.coordinate)
+  ////  }
+  //
+  //  func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+  //
+  //    self.selectAnnotation = view.annotation as? MKPointAnnotation
+  //
+  //  }
   
   func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
     
-    if let test = pin as? CustomPin {
+    if annotation is MKUserLocation {
       
+      return nil
     }
     
+    var customView = realTimeMap.dequeueReusableAnnotationView(withIdentifier: "custom") as? MKMarkerAnnotationView
+    
+    if customView == nil {
+      
+      customView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: "custom")
+    } else {
+      
+      customView?.annotation = annotation
+    }
+    
+    customView?.markerTintColor = .green
+    
+//    customView?.glyphText = "Jim"
+    
+    customView?.glyphImage = UIImage(named: "Icons_24px_Close")
+    
+    customView?.selectedGlyphImage =  UIImage(named: "Icons_24px_Close")
+    
+    customView?.subtitleVisibility = .visible
+    
+    return customView
   }
 }

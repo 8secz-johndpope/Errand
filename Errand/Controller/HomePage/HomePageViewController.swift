@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GoogleSignIn
 import FirebaseAuth
 import FBSDKLoginKit
 
@@ -17,11 +18,20 @@ class ViewController: UIViewController {
     
     setUpBtn()
     
+    NotificationCenter.default.addObserver(self, selector: #selector(goToUserInfo), name: Notification.Name("userInfo"), object: nil)
   }
   
   @IBOutlet weak var fbLoginBtn: UIButton!
   
   @IBOutlet weak var visitorRegisterBtn: UIButton!
+  
+  @IBOutlet weak var googleLoginBtn: UIButton!
+  
+  @IBAction func googleLoginAct(_ sender: Any) {
+    
+    GIDSignIn.sharedInstance()?.signIn()
+    
+  }
   
   @IBAction func fbLoginAct(_ sender: Any) {
     
@@ -85,6 +95,15 @@ class ViewController: UIViewController {
     
     visitorRegisterBtn.layer.cornerRadius = 20
     
+    googleLoginBtn.layer.cornerRadius = 20
+    
+    GIDSignIn.sharedInstance()?.presentingViewController = self
   }
   
+  @objc func goToUserInfo () {
+    
+    guard let userInfoVc = self.storyboard?.instantiateViewController(identifier: "userinfo") as? UserInfoViewController else { return }
+    
+    self.present(userInfoVc, animated: true, completion: nil)
+  }
 }

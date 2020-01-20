@@ -33,7 +33,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZzG-5v-Qhd">
-                                <rect key="frame" x="107" y="558" width="200" height="60"/>
+                                <rect key="frame" x="107" y="663" width="200" height="60"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="1zA-gk-J9K"/>
@@ -45,29 +45,45 @@
                                     <action selector="visitorRegisterAct:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0RR-ZD-iKs"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4aw-tP-mdE">
+                                <rect key="frame" x="107" y="543" width="200" height="60"/>
+                                <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="4t4-kc-Vrh"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="Dbl-r4-3z2"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Google登入"/>
+                                <connections>
+                                    <action selector="googleLoginAct:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cuO-Yk-3xG"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="eYz-wq-P91" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="2T4-xX-hhA"/>
                             <constraint firstItem="p7Z-eB-DUq" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="35Q-VE-0Di"/>
+                            <constraint firstItem="ZzG-5v-Qhd" firstAttribute="top" secondItem="4aw-tP-mdE" secondAttribute="bottom" constant="60" id="BrS-er-ChP"/>
                             <constraint firstAttribute="bottom" secondItem="eYz-wq-P91" secondAttribute="bottom" id="FqQ-Tu-54m"/>
+                            <constraint firstItem="4aw-tP-mdE" firstAttribute="top" secondItem="p7Z-eB-DUq" secondAttribute="bottom" constant="60" id="KnZ-CE-ps9"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="eYz-wq-P91" secondAttribute="trailing" id="NFM-nX-SUg"/>
                             <constraint firstItem="p7Z-eB-DUq" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="UjT-wP-U5C"/>
-                            <constraint firstItem="ZzG-5v-Qhd" firstAttribute="top" secondItem="p7Z-eB-DUq" secondAttribute="bottom" constant="75" id="c9R-Eo-vH3"/>
                             <constraint firstItem="eYz-wq-P91" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="oOT-6d-LFq"/>
                             <constraint firstItem="ZzG-5v-Qhd" firstAttribute="centerX" secondItem="eYz-wq-P91" secondAttribute="centerX" id="qNw-rx-jLE"/>
+                            <constraint firstItem="4aw-tP-mdE" firstAttribute="centerX" secondItem="eYz-wq-P91" secondAttribute="centerX" id="ued-od-76V"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="fbLoginBtn" destination="p7Z-eB-DUq" id="deL-7B-jiJ"/>
+                        <outlet property="googleLoginBtn" destination="4aw-tP-mdE" id="3Ap-Fy-DqS"/>
                         <outlet property="visitorRegisterBtn" destination="ZzG-5v-Qhd" id="TJ7-KX-UFC"/>
                         <segue destination="EbJ-p1-Cze" kind="presentation" identifier="register" id="9vU-B3-TwK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="132" y="121"/>
+            <point key="canvasLocation" x="131.8840579710145" y="120.53571428571428"/>
         </scene>
         <!--Regist View Controller-->
         <scene sceneID="dU7-4p-blV">

@@ -18,7 +18,6 @@
 		FB387C1F23CEEF0F00B6D8C4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB387C1D23CEEF0F00B6D8C4 /* LaunchScreen.storyboard */; };
 		FB387C2A23CEEF1000B6D8C4 /* ErrandTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB387C2923CEEF1000B6D8C4 /* ErrandTests.swift */; };
 		FB387C3523CEEF1000B6D8C4 /* ErrandUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB387C3423CEEF1000B6D8C4 /* ErrandUITests.swift */; };
-		FB387C4323CEF1CE00B6D8C4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FB387C4223CEF1CE00B6D8C4 /* GoogleService-Info.plist */; };
 		FB387C4923CEFCC600B6D8C4 /* RegistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB387C4823CEFCC600B6D8C4 /* RegistViewController.swift */; };
 		FB387C4D23CF098F00B6D8C4 /* JGProgressHUDWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB387C4C23CF098F00B6D8C4 /* JGProgressHUDWrapper.swift */; };
 		FB387C5023CF0E8E00B6D8C4 /* RegisterItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB387C4F23CF0E8E00B6D8C4 /* RegisterItem.swift */; };
@@ -28,6 +27,7 @@
 		FB387C5B23CF554300B6D8C4 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB387C5A23CF554300B6D8C4 /* MapViewController.swift */; };
 		FB9A2BFE23D068FF00553D97 /* PostTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9A2BFD23D068FF00553D97 /* PostTaskViewController.swift */; };
 		FB9A2C0023D0729400553D97 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB9A2BFF23D0729400553D97 /* MapKit.framework */; };
+		FBF7AB5623D52EEF004B521A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FBF7AB5523D52EEF004B521A /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,7 +71,6 @@
 		FB387C3023CEEF1000B6D8C4 /* ErrandUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ErrandUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB387C3423CEEF1000B6D8C4 /* ErrandUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrandUITests.swift; sourceTree = "<group>"; };
 		FB387C3623CEEF1000B6D8C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FB387C4223CEF1CE00B6D8C4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FB387C4823CEFCC600B6D8C4 /* RegistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistViewController.swift; sourceTree = "<group>"; };
 		FB387C4C23CF098F00B6D8C4 /* JGProgressHUDWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JGProgressHUDWrapper.swift; sourceTree = "<group>"; };
 		FB387C4F23CF0E8E00B6D8C4 /* RegisterItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterItem.swift; sourceTree = "<group>"; };
@@ -81,6 +80,7 @@
 		FB387C5A23CF554300B6D8C4 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		FB9A2BFD23D068FF00553D97 /* PostTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTaskViewController.swift; sourceTree = "<group>"; };
 		FB9A2BFF23D0729400553D97 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		FBF7AB5523D52EEF004B521A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,7 +170,7 @@
 				FB387C1D23CEEF0F00B6D8C4 /* LaunchScreen.storyboard */,
 				FB387C2023CEEF0F00B6D8C4 /* Info.plist */,
 				FB387C1823CEEF0E00B6D8C4 /* Errand.xcdatamodeld */,
-				FB387C4223CEF1CE00B6D8C4 /* GoogleService-Info.plist */,
+				FBF7AB5523D52EEF004B521A /* GoogleService-Info.plist */,
 			);
 			path = Errand;
 			sourceTree = "<group>";
@@ -292,6 +292,7 @@
 				FB387C0A23CEEF0E00B6D8C4 /* Resources */,
 				74C14ED52E29D0F622B01A39 /* [CP] Embed Pods Frameworks */,
 				FB387C5123CF1BCA00B6D8C4 /* ShellScript */,
+				E2E510830B748E5A2386962E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -330,6 +331,7 @@
 				FB387C2D23CEEF1000B6D8C4 /* Frameworks */,
 				FB387C2E23CEEF1000B6D8C4 /* Resources */,
 				277223EA286F432F9B8A9000 /* [CP] Embed Pods Frameworks */,
+				90880273EFC2B1E28AF7B7CF /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -390,8 +392,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				FB387C1F23CEEF0F00B6D8C4 /* LaunchScreen.storyboard in Resources */,
-				FB387C4323CEF1CE00B6D8C4 /* GoogleService-Info.plist in Resources */,
 				FB387C1C23CEEF0F00B6D8C4 /* Assets.xcassets in Resources */,
+				FBF7AB5623D52EEF004B521A /* GoogleService-Info.plist in Resources */,
 				FB387C1723CEEF0E00B6D8C4 /* Main.storyboard in Resources */,
 				FB387C5823CF551A00B6D8C4 /* Content.storyboard in Resources */,
 			);
@@ -470,6 +472,23 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Errand/Pods-Errand-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		90880273EFC2B1E28AF7B7CF /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Errand-ErrandUITests/Pods-Errand-ErrandUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Errand-ErrandUITests/Pods-Errand-ErrandUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Errand-ErrandUITests/Pods-Errand-ErrandUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		9FF3D19317DE8E9FA4835BC3 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -512,6 +531,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E2E510830B748E5A2386962E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Errand/Pods-Errand-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Errand/Pods-Errand-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Errand/Pods-Errand-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FB387C5123CF1BCA00B6D8C4 /* ShellScript */ = {

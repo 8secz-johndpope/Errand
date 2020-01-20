@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qKL-ME-N2l">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="gTU-NR-nwi">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -12,27 +13,52 @@
             <objects>
                 <viewController storyboardIdentifier="map" modalPresentationStyle="fullScreen" id="3hd-SR-2Wa" customClass="MapViewController" customModule="Errand" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wkb-cs-1NC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="1200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TeR-Ik-nMZ">
-                                <rect key="frame" x="0.0" y="88" width="414" height="600"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="600" id="7DL-NY-Wjn"/>
-                                </constraints>
+                                <rect key="frame" x="0.0" y="44" width="414" height="1003"/>
                             </mapView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="SXA-Ex-xEM">
+                                <rect key="frame" x="0.0" y="1055" width="414" height="62"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="InA-Ze-sUb">
+                                    <size key="itemSize" width="185" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="5oX-It-FPZ">
+                                        <rect key="frame" x="0.0" y="0.0" width="185" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="HO8-xk-ocl">
+                                            <rect key="frame" x="0.0" y="0.0" width="185" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="185" height="50"/>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="Q1y-fb-dCw" firstAttribute="trailing" secondItem="SXA-Ex-xEM" secondAttribute="trailing" id="Iv2-uY-Rvg"/>
                             <constraint firstItem="TeR-Ik-nMZ" firstAttribute="top" secondItem="Q1y-fb-dCw" secondAttribute="top" id="Qad-fZ-I12"/>
+                            <constraint firstItem="Q1y-fb-dCw" firstAttribute="bottom" secondItem="TeR-Ik-nMZ" secondAttribute="bottom" constant="70" id="X2C-hj-Lh6"/>
+                            <constraint firstItem="SXA-Ex-xEM" firstAttribute="leading" secondItem="Q1y-fb-dCw" secondAttribute="leading" id="bqF-O0-twj"/>
                             <constraint firstItem="Q1y-fb-dCw" firstAttribute="trailing" secondItem="TeR-Ik-nMZ" secondAttribute="trailing" id="cVB-Hi-RGx"/>
                             <constraint firstItem="TeR-Ik-nMZ" firstAttribute="leading" secondItem="Q1y-fb-dCw" secondAttribute="leading" id="kdM-n1-ypj"/>
+                            <constraint firstItem="Q1y-fb-dCw" firstAttribute="bottom" secondItem="SXA-Ex-xEM" secondAttribute="bottom" id="pMp-H1-YyM"/>
+                            <constraint firstItem="SXA-Ex-xEM" firstAttribute="top" secondItem="TeR-Ik-nMZ" secondAttribute="bottom" constant="8" symbolic="YES" id="vwY-Ow-nvZ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Q1y-fb-dCw"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="地圖" image="mappin.and.ellipse" catalog="system" id="CVr-mX-Rh4"/>
                     <navigationItem key="navigationItem" id="leA-I1-oGz"/>
+                    <size key="freeformSize" width="414" height="1200"/>
                     <connections>
+                        <outlet property="chooseKind" destination="SXA-Ex-xEM" id="LAk-Zj-sUE"/>
                         <outlet property="realTimeMap" destination="TeR-Ik-nMZ" id="A2p-kG-9YT"/>
                     </connections>
                 </viewController>
@@ -40,33 +66,17 @@
             </objects>
             <point key="canvasLocation" x="1920.289855072464" y="101.78571428571428"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="YzD-me-qfn">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qKL-ME-N2l" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="kuX-NK-O9G">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="gTU-NR-nwi" kind="relationship" relationship="rootViewController" id="GGt-Tj-Ott"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="RIf-to-yQJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="100.00000000000001" y="101.78571428571428"/>
-        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="KTU-3Q-Mbb">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="gTU-NR-nwi" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tab" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="gTU-NR-nwi" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="I6y-vH-of8"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="C7h-WW-BU3">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="C7h-WW-BU3">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.32549019607843138" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
                         <segue destination="3hd-SR-2Wa" kind="relationship" relationship="viewControllers" id="62s-Lj-2NZ"/>
@@ -75,7 +85,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6cT-MU-oDd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1010.144927536232" y="101.78571428571428"/>
+            <point key="canvasLocation" x="980" y="0.0"/>
         </scene>
         <!--發任務-->
         <scene sceneID="fHA-HI-7W8">
@@ -84,7 +94,7 @@
                     <view key="view" contentMode="scaleToFill" id="8un-hN-VIm">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" red="0.84074313112448529" green="0.92122562698560406" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <viewLayoutGuide key="safeArea" id="x5l-YM-aTQ"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="發任務" image="pencil.and.ellipsis.rectangle" catalog="system" id="f7R-eO-fYV"/>
