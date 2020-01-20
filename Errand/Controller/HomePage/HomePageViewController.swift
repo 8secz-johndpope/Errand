@@ -27,6 +27,13 @@ class ViewController: UIViewController {
   
   @IBOutlet weak var googleLoginBtn: UIButton!
   
+  @IBOutlet weak var appleLogo: UIImageView!
+  
+  @IBOutlet weak var appleLoginBtn: UIButton!
+  
+  @IBAction func appleLoginAct(_ sender: Any) {
+  }
+  
   @IBAction func googleLoginAct(_ sender: Any) {
     
     GIDSignIn.sharedInstance()?.signIn()
@@ -93,9 +100,23 @@ class ViewController: UIViewController {
     
     fbLoginBtn.layer.cornerRadius = 20
     
+    fbLoginBtn.titleLabel?.font = UIFont(name: "Helvetica-Bold", size: 24)
+    
     visitorRegisterBtn.layer.cornerRadius = 20
     
+    visitorRegisterBtn.titleLabel?.font = UIFont(name: "Helvetica-Bold", size: 24)
+    
     googleLoginBtn.layer.cornerRadius = 20
+    
+    googleLoginBtn.titleLabel?.font = UIFont(name: "Helvetica-Bold", size: 24)
+    
+    appleLoginBtn.layer.cornerRadius = 20
+    
+    appleLoginBtn.titleLabel?.font = UIFont(name: "Helvetica-Bold", size: 24)
+    
+    appleLoginBtn.layer.borderWidth = 1.0
+    
+    appleLoginBtn.layer.borderColor = UIColor.black.cgColor
     
     GIDSignIn.sharedInstance()?.presentingViewController = self
   }
