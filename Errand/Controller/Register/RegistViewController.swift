@@ -110,36 +110,36 @@ class RegistViewController: UIViewController {
       
       LKProgressHUD.show(controller: self)
       
-      UserManager.shared.registAccount(nickName: nickName, account: account, password: password, gender: self.gender) { result in
-        
-        switch result {
-          
-        case .success:
-          
-          UserManager.shared.createDataBase(classification: "Users", gender: self.gender, nickName: nickName, email: account) { result in
-            
-            switch result {
-              
-            case .success:
-              
-              guard let userInfoVc = UIStoryboard(name: "Content", bundle: nil).instantiateViewController(identifier: "googleMap") as? GoogleMapViewController else { return }
-              
-              LKProgressHUD.dismiss()
-              
-              self.present(userInfoVc, animated: true, completion: nil)
-              
-            case .failure(let error):
-              
-               LKProgressHUD.showFailure(text: error.localizedDescription, controller: self)
-            }
-          }
-          
-        case .failure(let error):
-          
-          LKProgressHUD.showFailure(text: error.localizedDescription, controller: self)
-        }
-      }
-      
+//      UserManager.shared.registAccount(nickName: nickName, account: account, password: password, gender: self.gender) { result in
+//        
+//        switch result {
+//          
+//        case .success:
+//          
+//          UserManager.shared.createDataBase(classification: "Users", gender: self.gender, nickName: nickName, email: account) { result in
+//            
+//            switch result {
+//              
+//            case .success:
+//              
+//              guard let userInfoVc = UIStoryboard(name: "Content", bundle: nil).instantiateViewController(identifier: "googleMap") as? GoogleMapViewController else { return }
+//              
+//              LKProgressHUD.dismiss()
+//              
+//              self.present(userInfoVc, animated: true, completion: nil)
+//              
+//            case .failure(let error):
+//              
+//               LKProgressHUD.showFailure(text: error.localizedDescription, controller: self)
+//            }
+//          }
+//          
+//        case .failure(let error):
+//          
+//          LKProgressHUD.showFailure(text: error.localizedDescription, controller: self)
+//        }
+//      }
+//      
     }
   }
   

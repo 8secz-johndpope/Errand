@@ -39,12 +39,11 @@ extension STRequest {
   }
 }
 
-
 enum DirectionRequest: STRequest {
   
   case directionAPI(origin: String, destination: String, key: String)
   
-  var headers: [String : String] {
+  var headers: [String: String] {
     switch self {
     case .directionAPI:
       return ["Content-Type": "application/json"]
@@ -92,6 +91,12 @@ class MapManager {
     URLSession.shared.dataTask(with: DirectionRequest.makeRequest(DirectionRequest.directionAPI(origin: originString, destination: destinationString, key: key))()) { (data, response, error) in
       
       guard let response = response as? HTTPURLResponse, response.statusCode == 200 else { return }
+      
+      guard let _ = error else {
+        
+      completion(.failure(DirectionApiError.comnnectError))
+        
+      return }
       
       guard let data = data else { return }
       do {

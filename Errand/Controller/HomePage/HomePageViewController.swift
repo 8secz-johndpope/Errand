@@ -21,6 +21,10 @@ class ViewController: UIViewController {
     NotificationCenter.default.addObserver(self, selector: #selector(goToUserInfo), name: Notification.Name("userInfo"), object: nil)
   }
   
+  let backgroundManager = BackgroundManager.shared
+  
+  @IBOutlet weak var logoLabel: UILabel!
+  
   @IBOutlet weak var fbLoginBtn: UIButton!
   
   @IBOutlet weak var visitorRegisterBtn: UIButton!
@@ -31,7 +35,12 @@ class ViewController: UIViewController {
   
   @IBOutlet weak var appleLoginBtn: UIButton!
   
+  @IBOutlet weak var accountText: UITextField!
+  
+  @IBOutlet weak var passwordText: UITextField!
+  
   @IBAction func appleLoginAct(_ sender: Any) {
+    
   }
   
   @IBAction func googleLoginAct(_ sender: Any) {
@@ -90,33 +99,64 @@ class ViewController: UIViewController {
   
   @IBAction func visitorRegisterAct(_ sender: Any) {
     
-    performSegue(withIdentifier: "register", sender: nil)
+    guard let account = accountText.text,
+      
+      accountText.text != "" else {
+        
+        LKProgressHUD.showFailure(text: RegistMessage.emptyAccount.rawValue, controller: self)
+        
+        return }
     
+    guard let password = passwordText.text,
+      
+      passwordText.text != "" else {
+        
+        LKProgressHUD.showFailure(text: RegistMessage.emptyPassword.rawValue, controller: self)
+        
+        return }
+      
+      LKProgressHUD.show(controller: self)
+      
+      UserManager.shared.registAccount(account: account, password: password) { result in
+        
+        switch result {
+          
+        case .success:
+          
+           LKProgressHUD.dismiss()
+          
+          guard let userInfoVc = self.storyboard?.instantiateViewController(identifier: "userinfo") as? UserInfoViewController else { return }
+          
+          self.present(userInfoVc, animated: true, completion: nil)
+
+        case .failure(let error):
+          
+          LKProgressHUD.showFailure(text: error.localizedDescription, controller: self)
+        }
+    }
   }
   
   func setUpBtn() {
     
     fbLoginBtn.layer.cornerRadius = 20
-    
-    fbLoginBtn.titleLabel?.font = UIFont(name: "Helvetica-Bold", size: 24)
-    
+ 
     visitorRegisterBtn.layer.cornerRadius = 20
-    
-    visitorRegisterBtn.titleLabel?.font = UIFont(name: "Helvetica-Bold", size: 24)
-    
+  
     googleLoginBtn.layer.cornerRadius = 20
-    
-    googleLoginBtn.titleLabel?.font = UIFont(name: "Helvetica-Bold", size: 24)
-    
+
     appleLoginBtn.layer.cornerRadius = 20
-    
-    appleLoginBtn.titleLabel?.font = UIFont(name: "Helvetica-Bold", size: 24)
     
     appleLoginBtn.layer.borderWidth = 1.0
     
     appleLoginBtn.layer.borderColor = UIColor.black.cgColor
     
     GIDSignIn.sharedInstance()?.presentingViewController = self
+    
+    logoLabel.transform = CGAffineTransform(a: 1.0, b: -0.15, c: 0, d: 0.7, tx: 0, ty: 10)
+    
+    let backView = backgroundManager.setUpView(view: self.view)
+    
+    self.view.layer.insertSublayer(backView, at: 0)
   }
   
   @objc func goToUserInfo () {

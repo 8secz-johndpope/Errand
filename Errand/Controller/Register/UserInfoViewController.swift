@@ -69,6 +69,9 @@ class UserInfoViewController: UIViewController {
     
     setUpView()
     // Do any additional setup after loading the view.
+    let backView = BackgroundManager.shared.setUpView(view: self.view)
+    
+    cheatView.layer.insertSublayer(backView, at: 0)
   }
   
   func setUpView() {

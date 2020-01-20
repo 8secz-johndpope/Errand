@@ -21,7 +21,7 @@ class UserManager {
   
   private init() { }
   
-  func registAccount(nickName: String, account: String, password: String, gender: Int, completion: @escaping (Result<String, Error>) -> Void) {
+  func registAccount(account: String, password: String, completion: @escaping (Result<String, Error>) -> Void) {
     
     Auth.auth().createUser(withEmail: account, password: password) { (_, error) in
       
@@ -133,7 +133,7 @@ class UserManager {
         
       } else {
         
-        guard let user = user else { return }
+        guard let _ = user else { return }
         
         completion(Result.success("Success"))
         
