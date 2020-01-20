@@ -30,9 +30,11 @@ class GoogleMapViewController: UIViewController, CLLocationManagerDelegate {
   
   @IBOutlet weak var categoryCollection: UICollectionView!
   
+  @IBOutlet weak var refreshBtn: UIButton!
+  
   let myLocationManager = CLLocationManager()
   
-  let directionManager = MapManager()
+  let directionManager = MapManager.shared
   
   let polyline = GMSPolyline()
   
@@ -127,9 +129,11 @@ class GoogleMapViewController: UIViewController, CLLocationManagerDelegate {
     marker1.map = googleMapView
     
     //    getDirectionBack(origin: marker.position, destination: marker1.position)
+    
+//    getDirectionBack(origin: myLocationManager.location!.coordinate, destination: marker1.position)
   }
   
-  func getDirectionBack(origin: CLLocationCoordinate2D, destination: CLLocationCoordinate2D){
+  func getDirectionBack(origin: CLLocationCoordinate2D, destination: CLLocationCoordinate2D) {
     
     directionManager.getDirection(origin: origin, destination: destination) { result in
       
@@ -137,17 +141,31 @@ class GoogleMapViewController: UIViewController, CLLocationManagerDelegate {
         
       case .success(let result):
         
+        for count in 0 ..< result.routes[0].legs[0].steps.count {
+          
+          let seperateDis = result.routes[0].legs[0].steps[count].duration.text.components(separatedBy: " 分鐘")
+
+          guard let baseIntMIn = Int(seperateDis[0]) else { return }
+          
+          self.directionManager.totalMin += baseIntMIn
+          
+        }
+        
         let routes = result.routes
         
         let routeOverviewPolyline = routes[0].overviewPolyline
+        
         let points = routeOverviewPolyline.points
         DispatchQueue.main.async {
           // 這裡的points就是那條encoded string
           let path = GMSPath.init(fromEncodedPath: points)
+          
           self.polyline.path = path
+          
           self.polyline.strokeWidth = 3
+          
           self.polyline.strokeColor = UIColor.blue
-          //            polyline.strokeColor = UIColor.init(hue: 210, saturation: 88, brightness: 84, alpha: 1)
+
           self.polyline.map = self.googleMapView
         }
         
@@ -158,6 +176,10 @@ class GoogleMapViewController: UIViewController, CLLocationManagerDelegate {
       
     }
   }
+  
+  @IBAction func refreshPathAct(_ sender: Any) {
+  }
+  
 }
 
 extension GoogleMapViewController: GMSMapViewDelegate {
@@ -171,23 +193,23 @@ extension GoogleMapViewController: GMSMapViewDelegate {
   }
   
 //  func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-//    
+//
 //    self.polyline.path = nil
-//    
+//
 //    let marker = GMSMarker()
-//    
+//
 //    marker.position = CLLocationCoordinate2D(latitude: CLLocationDegrees(25.033671), longitude: CLLocationDegrees(121.564427))
-//    
+//
 //    marker.title = "101"
-//    
+//
 //    marker.snippet = "Taipei"
-//    
+//
 //    marker.icon = UIImage(named: "Icons_24px_Close")
-//    
+//
 //    marker.icon = GMSMarker.markerImage(with: .blue)
-//    
+//
 //    marker.map = googleMapView
-//    
+//
 //    getDirectionBack(origin: myLocationManager.location!.coordinate, destination: marker.position)
 //  }
   

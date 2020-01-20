@@ -69,7 +69,7 @@ enum DirectionRequest: STRequest {
     switch self {
     
     case .directionAPI(let origin, let destination, let key):
-      return "https://maps.googleapis.com/maps/api/directions/json?origin=\(origin)&destination=\(destination)&key=\(key)"
+      return "https://maps.googleapis.com/maps/api/directions/json?origin=\(origin)&destination=\(destination)&key=\(key)&mode=driving"
     }
   }
 }
@@ -80,9 +80,11 @@ class MapManager {
   
   let key = "AIzaSyBbTnBn0MHPMnioaL4y68Da3d41JlaSY-g"
   
+  var totalMin = 0
+  
   let decoder = JSONDecoder()
   
-  func getDirection(origin: CLLocationCoordinate2D, destination: CLLocationCoordinate2D, completion: @escaping ((Result<Welcome,Error>) -> Void)){
+  func getDirection(origin: CLLocationCoordinate2D, destination: CLLocationCoordinate2D, completion: @escaping ((Result<Welcome, Error>) -> Void)) {
     
     let originString = "\(origin.latitude),\(origin.longitude)"
     let destinationString = "\(destination.latitude),\(destination.longitude)"
@@ -93,7 +95,6 @@ class MapManager {
       
       guard let data = data else { return }
       do {
-        let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
         
         let result = try self.decoder.decode(Welcome.self, from: data)
         

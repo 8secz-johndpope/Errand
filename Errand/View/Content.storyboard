@@ -98,6 +98,17 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q9i-bH-NoB">
+                                <rect key="frame" x="369" y="708" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="2Rd-PV-8oN"/>
+                                    <constraint firstAttribute="height" constant="40" id="N6h-Wc-9a6"/>
+                                </constraints>
+                                <state key="normal" image="road-2"/>
+                                <connections>
+                                    <action selector="refreshPathAct:" destination="Lwa-2F-1Km" eventType="touchUpInside" id="e2X-fR-LpV"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -108,6 +119,8 @@
                             <constraint firstItem="lR9-e6-IDw" firstAttribute="trailing" secondItem="AF1-sS-Eva" secondAttribute="trailing" id="PbD-54-gvH"/>
                             <constraint firstItem="c6Y-Tz-S30" firstAttribute="leading" secondItem="lR9-e6-IDw" secondAttribute="leading" id="Qcu-mw-y3e"/>
                             <constraint firstItem="c6Y-Tz-S30" firstAttribute="top" secondItem="lR9-e6-IDw" secondAttribute="top" id="obl-v2-6lY"/>
+                            <constraint firstItem="AF1-sS-Eva" firstAttribute="top" secondItem="q9i-bH-NoB" secondAttribute="bottom" constant="3" id="sme-gz-zIx"/>
+                            <constraint firstItem="lR9-e6-IDw" firstAttribute="trailing" secondItem="q9i-bH-NoB" secondAttribute="trailing" constant="5" id="wLy-kN-s5U"/>
                             <constraint firstItem="lR9-e6-IDw" firstAttribute="bottom" secondItem="c6Y-Tz-S30" secondAttribute="bottom" constant="70" id="xYl-Ef-MLB"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="lR9-e6-IDw"/>
@@ -116,6 +129,7 @@
                     <connections>
                         <outlet property="categoryCollection" destination="AF1-sS-Eva" id="yab-X9-fTZ"/>
                         <outlet property="googleMapView" destination="c6Y-Tz-S30" id="hac-HU-E0g"/>
+                        <outlet property="refreshBtn" destination="q9i-bH-NoB" id="cOP-hQ-2j8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pZ9-w1-uuK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -125,7 +139,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="KTU-3Q-Mbb">
             <objects>
-                <tabBarController storyboardIdentifier="tab" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="gTU-NR-nwi" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tab" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="gTU-NR-nwi" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="I6y-vH-of8"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="C7h-WW-BU3">
@@ -164,5 +178,6 @@
         <image name="map" catalog="system" width="64" height="56"/>
         <image name="mappin.and.ellipse" catalog="system" width="58" height="64"/>
         <image name="pencil.and.ellipsis.rectangle" catalog="system" width="64" height="40"/>
+        <image name="road-2" width="512" height="512"/>
     </resources>
 </document>

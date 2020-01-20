@@ -135,8 +135,6 @@ class UserManager {
         
         guard let user = user else { return }
         
-        print(user)
-        
         completion(Result.success("Success"))
         
       }

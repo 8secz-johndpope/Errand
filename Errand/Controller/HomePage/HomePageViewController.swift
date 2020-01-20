@@ -52,9 +52,7 @@ class ViewController: UIViewController {
           
           switch result {
             
-          case .success(let okk):
-            
-            print(okk)
+          case .success:
             
             UserManager.shared.loadFBProfile(controller: self) { result in
               
@@ -72,11 +70,11 @@ class ViewController: UIViewController {
               }
             }
             
-            LKProgressHUD.showSuccess(text: okk, controller: self)
+            LKProgressHUD.showSuccess(text: "Success", controller: self)
             
           case .failure(let error):
             
-            print(error.localizedDescription)
+             LKProgressHUD.showFailure(text: error.localizedDescription, controller: self)
             
           }
         }

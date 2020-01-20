@@ -296,7 +296,7 @@
         <!--User Info View Controller-->
         <scene sceneID="c7L-I8-wSC">
             <objects>
-                <viewController storyboardIdentifier="userinfo" modalPresentationStyle="fullScreen" id="Hba-eG-AB9" customClass="UserInfoViewController" customModule="Errand" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="userinfo" modalPresentationStyle="formSheet" id="Hba-eG-AB9" customClass="UserInfoViewController" customModule="Errand" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0GT-zb-sDu">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -344,6 +344,11 @@
                                         </constraints>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="立即開始"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="createDataBase:" destination="Hba-eG-AB9" eventType="touchUpInside" id="eIh-IF-OG6"/>
                                         </connections>
@@ -364,7 +369,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.67000000000000004" alpha="0.41481164383561642" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.67000000000000004" alpha="0.14164169520547945" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="cJ5-FI-kvj" firstAttribute="trailing" secondItem="vId-Ct-Edm" secondAttribute="trailing" id="VYK-v4-Xp9"/>
                             <constraint firstItem="vId-Ct-Edm" firstAttribute="leading" secondItem="cJ5-FI-kvj" secondAttribute="leading" id="XQe-4v-pu8"/>
